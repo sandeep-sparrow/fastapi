@@ -1,21 +1,23 @@
 import sys, uvicorn
 from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent))
+
 from fastapi import FastAPI, Depends, HTTPException
 from typing import Annotated
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from starlette import status
-
-sys.path.append(str(Path(__file__).parent))
-
+from routers import auth
 from database import SessionLocal
 from models import Todos
-
 from database import engine
 import models
 
 app = FastAPI(title="TodoApp", version="1.0.0")
+app.include_router(auth.router)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
