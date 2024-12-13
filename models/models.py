@@ -1,4 +1,4 @@
-from database import Base
+from TodoApp.db.database import Base
 from sqlalchemy import Column, Integer, String, Boolean
 
 class Todos(Base):

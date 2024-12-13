@@ -6,7 +6,7 @@ sys.path.append(str(Path(__file__).parent))
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import auth, todo
+from endpoints import auth, todo
 
 app = FastAPI(title="FastAPI Web Server", version="1.0.1")
 
