@@ -22,8 +22,8 @@ app.add_middleware(
 async def check_health():
     return "Up and Running!"
 
-app.include_router(auth.router, tags=['Auth'])
-app.include_router(todo.router, tags=['Todos'])
+app.include_router(auth.router, prefix='/auth', tags=['Authentication APIs'])
+app.include_router(todo.router, tags=['Todo  APIs'])
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
