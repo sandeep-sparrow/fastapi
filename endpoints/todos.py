@@ -8,7 +8,7 @@ from TodoApp.models.models import Todos
 from TodoApp import models
 from .auth import get_current_user
 
-router = APIRouter()
+router = APIRouter(prefix="/todo", tags=['Todo'])
 
 models.models.Base.metadata.create_all(bind=engine)
 
@@ -29,7 +29,9 @@ class TodoRequest(BaseModel):
     complete: bool
 @router.get("/")
 async def read_all(user: user_dependency, db: db_dependency):
-    if not user:
+    print(f"User dependency received: {user}")  # Debugging line
+    print("Route /todo is being executed")
+    if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Authentication Failed')
     return db.query(Todos).filter(Todos.owner_id == user.get('id')).all()
 
