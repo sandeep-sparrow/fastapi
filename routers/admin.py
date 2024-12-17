@@ -2,14 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException, Path
 from typing import Annotated
 from sqlalchemy.orm import Session
 from starlette import status
-from TodoApp.db.database import SessionLocal, engine
-from TodoApp.models.models import Todos
-from TodoApp import models
+from ..database import SessionLocal
+from ..models import Todos
 from .auth import get_current_user
 
 router = APIRouter()
-
-models.models.Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()

@@ -3,14 +3,11 @@ from typing import Annotated
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
 from starlette import status
-from TodoApp.db.database import SessionLocal, engine
-from TodoApp.models.models import Todos
-from TodoApp import models
+from ..database import SessionLocal
+from ..models import Todos
 from .auth import get_current_user
 
 router = APIRouter(prefix="/todo", tags=['Todo'])
-
-models.models.Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()

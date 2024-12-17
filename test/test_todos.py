@@ -3,9 +3,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 from starlette import status
 
-from ..db.database import Base
+from ..database import Base
+from ..routers.todos import get_db, get_current_user
 from TodoApp.main import app
-from ..endpoints.todos import get_db, get_current_user
 from fastapi.testclient import TestClient
 
 SQLALCHEMY_DATABASE_URL = 'sqlite:///./testdb.db'

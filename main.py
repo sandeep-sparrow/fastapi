@@ -1,22 +1,16 @@
 import sys, uvicorn
 from pathlib import Path
-
 sys.path.append(str(Path(__file__).parent))
 
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+# relative imports
+from .models import Base
+from .database import engine
+from .routers import auth, todos, admin, users
 
-from endpoints import auth, todos, admin, users
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="FastAPI Web Server", version="1.0.1")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
-)
 
 @app.get("/health", description="Health Checker", tags=['Health'])
 async def health_check():
