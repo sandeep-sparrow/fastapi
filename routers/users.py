@@ -5,14 +5,12 @@ from passlib.context import CryptContext
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from starlette import status
-from TodoApp.db.database import SessionLocal, engine
-from TodoApp.models.models import Users
-from TodoApp import models
+from ..database import SessionLocal
+from ..models import Users
 from .auth import get_current_user
 
 router = APIRouter()
 
-models.models.Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()
