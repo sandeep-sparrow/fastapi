@@ -48,6 +48,10 @@ templates = Jinja2Templates(directory='TodoApp/templates')
 def render_login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
+@router.get("/register-page")
+def render_login_page(request: Request):
+    return templates.TemplateResponse("register.html", {"request": request})
+
 ### End Points ###
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependency, create_user_request: CreateUserRequest):

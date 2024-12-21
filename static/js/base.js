@@ -186,7 +186,6 @@
                 first_name: data.firstname,
                 last_name: data.lastname,
                 role: data.role,
-                phone_number: data.phone_number,
                 password: data.password
             };
 
