@@ -9,3 +9,5 @@ pytest
 pytest-asyncio
 uvicorn
 httpx
+aiofiles
+jinja2
